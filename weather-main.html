@@ -5,21 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-    <title>Document</title>
-    <link rel="stylesheet" href="weather-main.css" />
+    <title>Weather app</title>
+    <link rel="stylesheet" href="src/weather-main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <!-- main -->
     <div class="main-box">
-        <!-- towns-list -->
-      <ul class="towns">
-        <li><a href="" class="town1">Lisbon</a></li>
-        <li><a href="" class="town2">Paris</a></li>
-        <li><a href="" class="town3">Sydney</a></li>
-        <li><a href="" class="town4">San Francisco</a></li>
-      </ul>
+      <br />
       <!-- inputs -->
       <input
         class="search"
@@ -30,73 +24,76 @@
       <input type="submit" class="blue btn" value="Search" />
       <input type="submit" class="green btn" value="Current" />
       <!-- weather-deteil -->
+      <br />
       <span class="weather-deteil">
         <h1 class="name-town">Lisbon</h1>
         <p class="data-in-town">Saturday 17:55</p>
-        <p>Clear</p>
+        <p class="clear">Clear</p>
       </span>
+      <br />
       <div class="w-d">
         <div class="temp">
-          <span class="temp-smile"><sup>🌞</sup></span>
+          <img class="temp-smile" src="" />
           <span class="temp-value">25</span>
           <span class="c-f">
-          <a href="#" class="temp-c">°C</a>
-          |
-          <a href="#" class="temp-f">°F</a>
-        </span>
+            <a href="#" class="temp-c">°C</a>
+            <span class="dash">|</span>
+            <a href="#" class="temp-f">°F</a>
+          </span>
         </div>
         <div class="p-v">
-          <p>Precipitation: 42%</p>
-          <p>Wind: 12km/h</p>
+          <p class="humidity">Humidity : 42%</p>
+          <p class="wind">Wind: 12km/h</p>
         </div>
       </div>
       <div class="weath-col-main">
         <div class="weath-col1">
-          <span class="day-col1">Sun</span>
+          <span class="day col1">Sun</span>
           <br />
           <span class="smile-col1">⛅</span>
           <br />
-          <span class="temp-col1">25°</span>
+          <span class="temp col1">25°</span>
         </div>
         <div class="weath-col2">
-          <span class="day-col2">Mon</span>
+          <span class="day col2">Mon</span>
           <br />
           <span class="smile-col2">🌞</span>
           <br />
-          <span class="temp-col2">26°</span>
+          <span class="temp col2">26°</span>
           <br />
         </div>
         <div class="weath-col3">
-          <span class="day-col3">Tue</span>
+          <span class="day col3">Tue</span>
           <br />
           <span class="smile-col3">🌞</span>
           <br />
-          <span class="temp-col3">26°</span>
+          <span class="temp col3">26°</span>
         </div>
         <div class="weath-col4">
-          <span class="day-col4">Wed</span>
+          <span class="day col4">Wed</span>
           <br />
           <span class="smile-col4">⛅</span>
           <br />
-          <span class="temp-col4">25°</span>
+          <span class="temp col4">25°</span>
         </div>
         <div class="weath-col5">
-          <span class="day-col5">Thu</span>
+          <span class="day col5">Thu</span>
           <br />
           <span class="smile-col5">🌞</span>
           <br />
-          <span class="temp-col5">27°</span>
+          <span class="temp col5">27°</span>
         </div>
       </div>
     </div>
     <small class="autor">
-      <a href="https://www.shecodes.io/">Open-source code</a>
+      <a href="https://github.com/CodeElliX/weather-app" target="_blank"
+        >Open-source code</a
+      >
       , by
       <a href="https://www.shecodes.io/">Olena Nikulina</a>
       from
       <a href="https://www.shecodes.io/">She Codes</a>
     </small>
-    <script src="weather-main.css"></script>
+    <script src="src/weather-main.js"></script>
   </body>
 </html>
- 
