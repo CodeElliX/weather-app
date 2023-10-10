@@ -16,6 +16,43 @@ let dayOll = [
 dataInTown.innerHTML = `${dayOll[day]}  ${hours}:${minutes}`;
 }
 
+function formatDay(timeStamp) {
+let date = new Date(timeStamp * 1000);
+let day = date.getDay();
+let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sut"]
+return days[day];
+}
+
+function forecastDisplay2(response) {
+  console.log(response.data.daily);
+  let daysForecast = response.data.daily;
+  let forecastHTML = `<div class = "row">`;
+  let mainDiv = document.querySelector(".weath-col-main");
+  daysForecast.forEach(function(days, index){
+    if(index < 5) {
+    forecastHTML = forecastHTML +
+    `<div class="weath-col1">
+  <span class="day col1">${formatDay(days.time)}</span>
+  <br />
+  <img class="smile-col1" src="${days.condition.icon_url}" >
+  <br />
+  <div class="forecast-temp">
+  <span class="temp col1 max">${Math.round(days.temperature.maximum)}°</span>
+  <span class="temp col1 min">${Math.round(days.temperature.minimum)}°</span>
+</div>
+</div>`;
+forecastHTML = forecastHTML + `</div>`;
+mainDiv.innerHTML = forecastHTML;
+}
+  });
+}
+
+function getForecast(coordinates){
+let apiKey = "42ef8abb71b19440308b0oaf8b08ecbt"; 
+let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}`;
+axios.get(apiUrl).then(forecastDisplay2);
+}
+
 function funcSubmit(value) {
   let searchInput = document.querySelector(".search");
   let nameTown = document.querySelector(".name-town");
@@ -25,7 +62,7 @@ let submitSearch = document.querySelector(".blue");
 submitSearch.addEventListener("click", funcSubmit);
 
 function curTemp(response) {
-  celTemp = response.data.main.temp;
+  celTemp = response.data.temperature.current;
   let temperature = Math.round(celTemp);
   let tempVal = document.querySelector(".temp-value");
   tempVal.innerHTML = temperature;
@@ -33,28 +70,28 @@ function curTemp(response) {
   let windVal = Math.round(response.data.wind.speed);
   wind.innerHTML = `Wind: ${windVal}km/h`;
   let clear = document.querySelector(".clear");
-  let clearVal = response.data.weather[0].description;
+  let clearVal = response.data.condition.description;
   clear.innerHTML = clearVal;
   let humidity = document.querySelector(".humidity");
-  let humidityVal = response.data.main.humidity;
+  let humidityVal = response.data.temperature.humidity;
   humidity.innerHTML = `Humidity : ${humidityVal}%`;
   let tempSmile = document.querySelector(".temp-smile");
-  let tempSmileValue = response.data.weather[0].icon;
-  tempSmile.setAttribute("src", `https://openweathermap.org/img/wn/${tempSmileValue}@2x.png`);
+  let tempSmileValue = response.data.condition.icon_url;
+  tempSmile.setAttribute("src", `${tempSmileValue}`);
   datas();
+  getForecast(response.data.coordinates);
 }
 let btn = document.querySelector(".blue");
 btn.addEventListener("click", aaa);
 
 function aaa(position) {
-  let apiKey = "c5101c55623cc05df4c2c27f2841f7f2";
+  let apiKey = "42ef8abb71b19440308b0oaf8b08ecbt";
   let search = document.querySelector(".search");
   let city = search.value;
   let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(curTemp);
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(curTemp); 
 }
-
 function fuh (event) {
 event.preventDefault();
 let temValue = document.querySelector(".temp-value");
