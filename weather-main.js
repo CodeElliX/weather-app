@@ -114,3 +114,10 @@ celTemperature.classList.add("temp-c");
 
 let celTemperature = document.querySelector(".temp-c");
 celTemperature.addEventListener("click", cel);
+
+// function to call when a key is pressed
+function handleSubmit(event) {
+  event.preventDefault();
+}
+let form = document.querySelector("form");
+form.addEventListener("submit", handleSubmit);
